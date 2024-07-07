@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: sensor-simulator
-        image: kmikholap/wt-sensor-sim:latest
+        image: kmikholap/wt-sensor-sim:v1
+        imagePullPolicy: Always
         env:
         - name: MQTT_BROKER
           value: "rabbitmq"
