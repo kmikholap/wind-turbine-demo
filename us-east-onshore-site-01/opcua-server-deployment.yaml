@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opcua-server
+  namespace: wind-turbine-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opcua-server
+  template:
+    metadata:
+      labels:
+        app: opcua-server
+    spec:
+      containers:
+      - name: opcua-server
+        image: kmikholap/wt-opcua-server:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opcua-server
+  namespace: wind-turbine-demo
+spec:
+  selector:
+    app: opcua-server
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
