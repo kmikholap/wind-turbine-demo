@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sensor-simulator
-  namespace: wind-turbine
+  namespace: wind-turbine-demo
 spec:
   replicas: 1
   selector:
