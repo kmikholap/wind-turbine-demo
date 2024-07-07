@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: kmikholap/wt-frontend-ui:v2
+        image: kmikholap/wt-frontend-ui:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
