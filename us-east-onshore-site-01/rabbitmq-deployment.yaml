@@ -28,7 +28,11 @@ spec:
         - name: RABBITMQ_NODENAME
           value: "rabbit@localhost"
         - name: RABBITMQ_PLUGINS
-          value: "rabbitmq_mqtt,rabbitmq_management"
+          value: "rabbitmq_management rabbitmq_mqtt"
+        volumeMounts:
+        - name: rabbitmq-config
+          mountPath: /etc/rabbitmq/rabbitmq.conf
+          subPath: rabbitmq.conf
         livenessProbe:
           exec:
             command:
@@ -36,6 +40,24 @@ spec:
             - status
           initialDelaySeconds: 30
           periodSeconds: 30
+      volumes:
+      - name: rabbitmq-config
+        configMap:
+          name: rabbitmq-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+  namespace: wind-turbine-demo
+data:
+  rabbitmq.conf: |
+    loopback_users.guest = false
+    listeners.tcp.default = 5672
+    management.listener.port = 15672
+    mqtt.listeners.tcp.default = 1883
+    mqtt.default_user = guest
+    mqtt.default_pass = guest
 ---
 apiVersion: v1
 kind: Service
