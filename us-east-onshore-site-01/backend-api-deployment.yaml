@@ -28,13 +28,6 @@ spec:
           value: "wt-co"
         - name: INFLUXDB_BUCKET
           value: "wind_turbine"
-        resources:
-          limits:
-            memory: "1Gi"
-            cpu: "1000m"
-          requests:
-            memory: "512Mi"
-            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -48,5 +41,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 5000
-    nodePort: 30004  # You can choose a NodePort in the range 30000-32767
+    nodePort: 30004
   type: NodePort

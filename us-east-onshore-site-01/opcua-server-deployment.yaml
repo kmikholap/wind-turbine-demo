@@ -17,7 +17,7 @@ spec:
       - name: opcua-server
         image: kmikholap/wt-opcua-server:latest
         ports:
-        - containerPort: 4840  # Correct OPC-UA default port
+        - containerPort: 4840  
 ---
 apiVersion: v1
 kind: Service
@@ -29,5 +29,5 @@ spec:
     app: opcua-server
   ports:
   - protocol: TCP
-    port: 4840  # Exposing the correct OPC-UA port
+    port: 4840  
     targetPort: 4840
