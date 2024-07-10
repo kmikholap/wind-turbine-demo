@@ -1,17 +1,17 @@
 resources:
   - ../namespace.yaml
-  - ../backend-api-deployment.yaml
+  - ../frontend-ui-deployment.yaml
   - ../data-processor-deployment.yaml
   - ../influxdb-deployment.yaml
   - ../opcua-server-deployment.yaml
   - ../rabbitmq-deployment.yaml
   - ../sensor-simulator-deployment.yaml
-  - frontend-ui-deployment.yaml
+  - backend-api-deployment.yaml
 
 namespace: wind-turbine-demo
 
 configMapGenerator:
-  - name: frontend-config-us-east-onshore-site-01
+  - name: backend-config-us-east-onshore-site-01
     literals:
       - SITE_NAME=us-east-onshore-site-01
       - TURBINE_INFO="<b>GaleForce XT':'</b><br>Rotor':' 220m<br>Blade':' 107m<br>Height':' 260m<br>Capacity':' 12-14MW"
