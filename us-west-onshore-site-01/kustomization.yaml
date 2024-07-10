@@ -8,6 +8,8 @@ resources:
   - ../sensor-simulator-deployment.yaml
   - frontend-ui-deployment.yaml
 
+namespace: wind-turbine-demo
+
 configMapGenerator:
   - name: frontend-config-us-west-offshore-site-01
     literals:
