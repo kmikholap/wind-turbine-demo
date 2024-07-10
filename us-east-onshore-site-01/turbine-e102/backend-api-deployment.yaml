@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend-api
-        image: kmikholap/wt-backend:latest
+        image: kmikholap/wt-backend:v11
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
