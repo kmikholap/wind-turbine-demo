@@ -33,7 +33,7 @@ spec:
             configMapKeyRef:
               name: backend-config-us-east-onshore-site-01
               key: SITE_NAME
-       - name: TURBINE_NAME
+        - name: TURBINE_NAME
           valueFrom:
             configMapKeyRef:
               name: backend-config-us-east-onshore-site-01
