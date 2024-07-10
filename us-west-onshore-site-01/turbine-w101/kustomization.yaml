@@ -16,4 +16,4 @@ configMapGenerator:
       - SITE_NAME=us-west-offshore-site-03
       - TURBINE_NAME=turbine-w101
       - TURBINE_INFO="<b>Ocean Breeze YZ</b><br>Rotor:180m<br>Blade:95m<br>Height:200m<br>Capacity:10-12MW"
-      - WEBSOCKET_URL=ws://192.168.71.107:30004/ws
+      - WEBSOCKET_URL=ws://192.168.71.116:30004/ws
