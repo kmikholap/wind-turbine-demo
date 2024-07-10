@@ -1,12 +1,16 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: wind-turbine-demo
 resources:
-  - ../us-east-onshore-site-01/namespace.yaml
-  - ../us-east-onshore-site-01/sensor-simulator-deployment.yaml
-  - ../us-east-onshore-site-01/rabbitmq-deployment.yaml
-  - ../us-east-onshore-site-01/data-processor-deployment.yaml
-  - ../us-east-onshore-site-01/opcua-server-deployment.yaml
-  - ../us-east-onshore-site-01/influxdb-deployment.yaml
-  - ../us-east-onshore-site-01/backend-api-deployment.yaml
-  - ../us-east-onshore-site-01/frontend-ui-deployment.yaml
+  - ../namespace.yaml
+  - ../backend-api-deployment.yaml
+  - ../data-processor-deployment.yaml
+  - ../influxdb-deployment.yaml
+  - ../opcua-server-deployment.yaml
+  - ../rabbitmq-deployment.yaml
+  - ../sensor-simulator-deployment.yaml
+  - frontend-ui-deployment.yaml
+
+configMapGenerator:
+  - name: frontend-config-us-east-onshore-site-01
+    literals:
+      - SITE_NAME=us-east-onshore-site-01
+      - TURBINE_INFO=<b>GaleForce XT:</b><br>Rotor: 220m<br>Blade: 107m<br>Height: 260m<br>Capacity: 12-14MW
+      - WEBSOCKET_URL=ws://192.168.71.53:30004/ws

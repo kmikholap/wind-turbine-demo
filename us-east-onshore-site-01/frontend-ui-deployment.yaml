@@ -15,10 +15,26 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: kmikholap/wt-frontend-ui:v4
+        image: kmikholap/wt-frontend-ui:v5
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        env:
+        - name: SITE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config-us-east-onshore-site-01
+              key: SITE_NAME
+        - name: TURBINE_INFO
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config-us-east-onshore-site-01
+              key: TURBINE_INFO
+        - name: WEBSOCKET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config-us-east-onshore-site-01
+              key: WEBSOCKET_URL
         livenessProbe:
           httpGet:
             path: /
