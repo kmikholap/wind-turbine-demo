@@ -33,6 +33,11 @@ spec:
             configMapKeyRef:
               name: backend-config-us-east-onshore-site-01
               key: SITE_NAME
+       - name: TURBINE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config-us-east-onshore-site-01
+              key: TURBINE_NAME
         - name: TURBINE_INFO
           valueFrom:
             configMapKeyRef:
@@ -42,7 +47,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: backend-config-us-east-onshore-site-01
-              key: WEBSOCKET_URL
+              key: WEBSOCKET_URL      
 ---
 apiVersion: v1
 kind: Service
