@@ -1,11 +1,11 @@
 resources:
-  - ../namespace.yaml
-  - ../frontend-ui-deployment.yaml
-  - ../data-processor-deployment.yaml
-  - ../influxdb-deployment.yaml
-  - ../opcua-server-deployment.yaml
-  - ../rabbitmq-deployment.yaml
-  - ../sensor-simulator-deployment.yaml
+  - ../../namespace.yaml
+  - ../../frontend-ui-deployment.yaml
+  - ../../data-processor-deployment.yaml
+  - ../../influxdb-deployment.yaml
+  - ../../opcua-server-deployment.yaml
+  - ../../rabbitmq-deployment.yaml
+  - ../../sensor-simulator-deployment.yaml
   - backend-api-deployment.yaml
 
 namespace: wind-turbine-demo
@@ -14,5 +14,6 @@ configMapGenerator:
   - name: backend-config-us-west-offshore-site-01
     literals:
       - SITE_NAME=us-west-offshore-site-03
+      - TURBINE_NAME=turbine-w101
       - TURBINE_INFO="<b>Ocean Breeze YZ</b><br>Rotor:180m<br>Blade:95m<br>Height:200m<br>Capacity:10-12MW"
       - WEBSOCKET_URL=ws://192.168.71.84:30004/ws
