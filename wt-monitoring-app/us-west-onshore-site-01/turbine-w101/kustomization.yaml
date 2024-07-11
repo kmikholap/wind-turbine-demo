@@ -3,5 +3,5 @@ kind: Kustomization
 patches:
 - path: w101-config.yaml
 resources:
-- ../../../base
+- ../../base
 - w101-data.yaml

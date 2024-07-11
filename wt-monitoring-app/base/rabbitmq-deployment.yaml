@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: wind-turbine-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: kmikholap/wt-rabbitmq:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 15672   # Management UI
+        - containerPort: 5672    # AMQP
+        - containerPort: 1883    # MQTT
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: "guest"
+        - name: RABBITMQ_DEFAULT_PASS
+          value: "guest"
+        - name: RABBITMQ_NODENAME
+          value: "rabbit@localhost"
+        - name: RABBITMQ_PLUGINS
+          value: "rabbitmq_management rabbitmq_mqtt"
+        volumeMounts:
+        - name: rabbitmq-config
+          mountPath: /etc/rabbitmq/rabbitmq.conf
+          subPath: rabbitmq.conf
+        livenessProbe:
+          exec:
+            command:
+            - rabbitmqctl
+            - status
+          initialDelaySeconds: 30
+          periodSeconds: 30
+      volumes:
+      - name: rabbitmq-config
+        configMap:
+          name: rabbitmq-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+  namespace: wind-turbine-demo
+data:
+  rabbitmq.conf: |
+    loopback_users.guest = false
+    listeners.tcp.default = 5672
+    management.listener.port = 15672
+    mqtt.listeners.tcp.default = 1883
+    mqtt.default_user = guest
+    mqtt.default_pass = guest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: wind-turbine-demo
+spec:
+  type: NodePort
+  selector:
+    app: rabbitmq
+  ports:
+  - name: management
+    protocol: TCP
+    port: 15672
+    targetPort: 15672
+    nodePort: 30011
+  - name: amqp
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
+    nodePort: 30012
+  - name: mqtt
+    protocol: TCP
+    port: 1883
+    targetPort: 1883
+    nodePort: 30013
