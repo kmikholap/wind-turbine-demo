@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: wind-turbine-demo
-  labels:
-    app: wind-turbine-demo
