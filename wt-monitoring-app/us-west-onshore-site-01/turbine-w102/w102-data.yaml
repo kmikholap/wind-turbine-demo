@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-us-west-site-01-w102
+  namespace: wind-turbine-demo
+
+data:
+  SITE_NAME=us-west-offshore-site-01
+  TURBINE_NAME=turbine-w102
+  TURBINE_INFO="<b>Wind Master 3000</b><br>Rotor:120m<br>Blade:95m<br>Height:100m<br>Capacity:3MW"
+  WEBSOCKET_URL=ws://192.168.71.130:30004/ws

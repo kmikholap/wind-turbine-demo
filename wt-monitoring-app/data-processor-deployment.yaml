@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-processor
+  namespace: wind-turbine-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-processor
+  template:
+    metadata:
+      labels:
+        app: data-processor
+    spec:
+      containers:
+      - name: data-processor
+        image: kmikholap/wt-data-processor:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-processor
+  namespace: wind-turbine-demo
+spec:
+  selector:
+    app: data-processor
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

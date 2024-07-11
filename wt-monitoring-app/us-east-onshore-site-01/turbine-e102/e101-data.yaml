@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-us-east-site-01-e101
+  namespace: wind-turbine-demo
+
+data:
+  SITE_NAME=us-east-onshore-site-01
+  TURBINE_NAME=turbine-e101
+  TURBINE_INFO="<b>GaleForce XT</b><br>Rotor:220m<br>Blade:107m<br>Height:260m<br>Capacity:12-14MW"
+  WEBSOCKET_URL=ws://192.168.9.109:30004/ws

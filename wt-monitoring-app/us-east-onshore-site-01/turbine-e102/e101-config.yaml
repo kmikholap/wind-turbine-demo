@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-api
+  namespace: wind-turbine-demo
+spec:
+  template:
+    spec:
+      containers:
+      - name: backend-api
+        env:
+        - name: SITE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: backend-us-east-site-01-e101
+              key: SITE_NAME
+        - name: TURBINE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: backend-us-east-site-01-e101
+              key: TURBINE_NAME
+        - name: TURBINE_INFO
+          valueFrom:
+            configMapKeyRef:
+              name: backend-us-east-site-01-e101
+              key: TURBINE_INFO
+        - name: WEBSOCKET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-us-east-site-01-e101
+              key: WEBSOCKET_URL
