@@ -34,13 +34,6 @@ spec:
         - name: rabbitmq-config
           mountPath: /etc/rabbitmq/rabbitmq.conf
           subPath: rabbitmq.conf
-        livenessProbe:
-          exec:
-            command:
-            - rabbitmqctl
-            - status
-          initialDelaySeconds: 30
-          periodSeconds: 30
       volumes:
       - name: rabbitmq-config
         configMap:
