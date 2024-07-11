@@ -1,8 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-bases:
-  - ../../../
+patches:
+- path: w101-config.yaml
 resources:
-  - w101-data.yaml
-patchesStrategicMerge:
-  - w101-config.yaml
+- ../../../base
+- w101-data.yaml
