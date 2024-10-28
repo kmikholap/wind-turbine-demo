@@ -9,5 +9,3 @@ resources:
   - rabbitmq-deployment.yaml
   - sensor-simulator-deployment.yaml
   - backend-api-deployment.yaml
-
-namespace: wind-turbine-demo
